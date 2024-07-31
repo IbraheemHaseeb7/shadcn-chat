@@ -1,27 +1,27 @@
-import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
-import "./globals.css";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Shadcn Chat",
-  description: "Chat/message components for Shadcn",
-};
+import { GeistSans } from "geist/font/sans";
+import "./globals.css";
+import { Provider } from "react-redux";
+import { store } from "@/state/store";
 
 export const viewport = {
-  width: 'device-width',
-  initialScale: 1,
-  maximumScale: 1,
-  userScalable: 1,
-}
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: 1,
+};
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={GeistSans.className}>{children}</body>
-    </html>
-  );
+    return (
+        <Provider store={store}>
+            <html lang="en">
+                <body className={GeistSans.className}>{children}</body>
+            </html>
+        </Provider>
+    );
 }
